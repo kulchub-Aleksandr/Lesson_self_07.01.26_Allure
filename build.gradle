@@ -7,7 +7,7 @@ group = 'ru.kulchub'
 version = '1.0-SNAPSHOT'
 
 allure {
-    version.set("2.34.1")
+    version.set("2.19.0")
     adapter {
         // Configure version for io.qameta.allure:allure-* adapters
         // It defaults to allure.version
@@ -59,6 +59,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'com.codeborne:selenide:7.13.0'
     testImplementation 'io.qameta.allure:allure-selenide:2.19.0'
+    testImplementation 'com.github.javafaker:javafaker:1.0.2'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
