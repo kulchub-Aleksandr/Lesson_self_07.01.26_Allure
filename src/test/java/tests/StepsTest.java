@@ -2,6 +2,7 @@ package tests;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Feature;
+import io.qameta.allure.Link;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -26,6 +27,7 @@ public class StepsTest {
     @Tags({
             @Tag("WEB"),
             @Tag("SMOKE"),
+            @Tag("demoqa")
     })
     public void RegistrationPageTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
@@ -44,6 +46,8 @@ public class StepsTest {
     @Feature("Регистрация_Feature")
     @Story("Пользователь регистрируется на сайте_Story")
     @Owner("User")
+    @Tag("demoqa")
+    @Link(value = "Страница для заполнения данных", url = "https://demoqa.com/automation-practice-form")
     public void RegistrationPageTestWithWebSteps() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         RegistrationPage steps = new RegistrationPage();
@@ -77,8 +81,5 @@ public class StepsTest {
                 .checkResult("Address", testData.currentAddress)
                 .checkResult("State and City", testData.state + " " + city)
                 .closeModal();
-
-
     }
-
 }

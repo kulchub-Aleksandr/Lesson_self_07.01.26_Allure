@@ -107,7 +107,7 @@ public class RegistrationPage {
         return this;
     }
 
-    @Step("скролим страницу")
+    @Step("Скролим страницу")
     public RegistrationPage setScroll() {
         submit.scrollIntoView("{block: 'center'}");
         return this;
