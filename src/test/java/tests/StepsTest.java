@@ -31,7 +31,7 @@ public class StepsTest extends TestBase {
             @Tag("demoqa")
     })
     public void RegistrationPageTest() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
+
         step("Открываем страницу заполнения формы", () -> {
             open("/automation-practice-form");
             $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
@@ -50,7 +50,7 @@ public class StepsTest extends TestBase {
     @Tag("demoqa")
     @Link(value = "Страница для заполнения данных", url = "https://demoqa.com/automation-practice-form")
     public void RegistrationPageTestWithWebSteps() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
+
         RegistrationPage steps = new RegistrationPage();
         String city = testData.city(testData.state);
         steps.openPage()
@@ -82,5 +82,6 @@ public class StepsTest extends TestBase {
                 .checkResult("Address", testData.currentAddress)
                 .checkResult("State and City", testData.state + " " + city)
                 .closeModal();
+
     }
 }
