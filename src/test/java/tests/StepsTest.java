@@ -1,24 +1,24 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.logevents.SelenideLogger;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Link;
-import io.qameta.allure.Owner;
-import io.qameta.allure.Story;
-import io.qameta.allure.selenide.AllureSelenide;
-import org.junit.jupiter.api.*;
+import io.qameta.allure.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
+import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
+import pages.components.CalendarComponent;
 
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
 public class StepsTest extends TestBase {
 
 
-
     TestData testData = new TestData();
+    CalendarComponent calendarComponent = new CalendarComponent();
 
     @Test
     @DisplayName("Тестирование регистрации на сайте")
@@ -30,23 +30,95 @@ public class StepsTest extends TestBase {
             @Tag("SMOKE"),
             @Tag("demoqa")
     })
-    public void RegistrationPageTest() {
+    public void RegistrationPageLambdaTest() {
+        String city = testData.city(testData.state);
 
-        step("Открываем страницу заполнения формы", () -> {
-            open("/automation-practice-form");
-            $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+        step("Open page", () -> {
+            step("Открываем страницу заполнения формы", () -> {
+                open("/automation-practice-form");
+                $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+            });
+            step("Закрываем и убираем мешающие элементы со страницы", () -> {
+                executeJavaScript("$('#fixedban').remove()");
+                executeJavaScript("$('footer').remove()");
+            });
         });
-        step("Закрываем и убираем мешающие элементы со страницы", () -> {
-            executeJavaScript("$('#fixedban').remove()");
-            executeJavaScript("$('footer').remove()");
+        step("Вводим данные", () -> {
+            step("Вводим Имя", () -> {
+                $("#firstName").setValue(testData.firstName);
+            });
+            step("Вводим Фамилию", () -> {
+                $("#lastName").setValue(testData.lastName);
+            });
+            step("Вводим Эл.Адрес", () -> {
+                $("#userEmail").setValue(testData.userEmail);
+            });
+            step("Выбираем пол", () -> {
+                $("#genterWrapper").setValue(testData.gender);
+            });
+            step("Вводим телефон", () -> {
+                $("#userNumber").setValue(testData.userNumber);
+            });
+            step("Вводим полную дату рождения", () -> {
+                $("#dateOfBirthInput").click();
+                calendarComponent.setDate(testData.day, testData.month, testData.year);
+            });
+            step("Вводим предмет", () -> {
+                $("#subjectsInput").setValue(testData.subjects).pressEnter();
+            });
+            step("Вводим Хобби", () -> {
+                $("#hobbiesWrapper").$(byText(testData.hobbies)).click();
+            });
+            step("Загружаем картинку", () -> {
+                $("#uploadPicture").uploadFromClasspath(testData.Picture);
+            });
+            step("Вводим Адрес проживания", () -> {
+                $("#currentAddress").setValue(testData.currentAddress);
+            });
+            step("Скролим страницу", () -> {
+                $("#submit").scrollIntoView("{block: 'center'}");
+            });
+            step("Выбираем Штат", () -> {
+                $("#react-select-3-input").setValue(testData.state).pressEnter();
+            });
+            step("Выбираем Город", () -> {
+                $("#react-select-4-input").setValue(city).pressEnter();
+            });
+            step("Нажимаем Submit", () -> {
+                $("#submit").click();
+            });
         });
+        step("Проверяем данные", () -> {
+            step("Проверяем модальное окно на видимость", () -> {
+                $(".modal-dialog").should(appear);
+            });
+            step("Проверяем модальное окно на видимость", () -> {
+                $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+            });
+            step("Проверяем соответствие столбцов в итоговой таблице", () -> {
+                step("Проверка имени ", () -> {
+                    //tableResponsive.setTable("Student Name", testData.firstName + " " + testData.lastName);
+                    $(".table-responsive").$(byText("Student Name")).parent().shouldHave(text(testData.firstName + " " + testData.lastName));
+                });
+
+
+                step("Закрываем итоговую таблицу", () -> {
+                    $("#closeLargeModal").click();
+                });
+
+            });
+
+
+        });
+
+
     }
 
     @Test
-    @DisplayName("Тестирование регистрации на сайте с помощью WebSteps")
-    @Feature("Регистрация_Feature")
-    @Story("Пользователь регистрируется на сайте_Story")
-    @Owner("User")
+    @DisplayName("Тестирование регистрации на сайте с помощью WebSteps__DisplayName")
+    @Feature("Регистрация__Feature")
+    @Story("Пользователь регистрируется на сайте__Story")
+    @Owner("AleksKulch")
     @Tag("demoqa")
     @Link(value = "Страница для заполнения данных", url = "https://demoqa.com/automation-practice-form")
     public void RegistrationPageTestWithWebSteps() {
