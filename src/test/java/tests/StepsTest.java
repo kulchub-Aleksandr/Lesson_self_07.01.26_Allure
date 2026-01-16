@@ -14,16 +14,9 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
-public class StepsTest {
+public class StepsTest extends TestBase {
 
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.browserSize = "1920x1080";
-       // Configuration.baseUrl = "https://demoqa.com";
-        Configuration.pageLoadStrategy = "eager";
-        //Configuration.holdBrowserOpen = true;
-        //Configuration.timeout = 10000; // default 4000
-    }
+
 
     TestData testData = new TestData();
 
@@ -40,7 +33,7 @@ public class StepsTest {
     public void RegistrationPageTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открываем страницу заполнения формы", () -> {
-            open("https://demoqa.com/automation-practice-form");
+            open("/automation-practice-form");
             $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
         });
         step("Закрываем и убираем мешающие элементы со страницы", () -> {
