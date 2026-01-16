@@ -54,7 +54,7 @@ public class StepsTest extends TestBase {
                 $("#userEmail").setValue(testData.userEmail);
             });
             step("Выбираем пол", () -> {
-                $("#genterWrapper").setValue(testData.gender);
+                $("#genterWrapper").$(byText(testData.gender)).click();
             });
             step("Вводим телефон", () -> {
                 $("#userNumber").setValue(testData.userNumber);
