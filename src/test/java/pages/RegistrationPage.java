@@ -31,14 +31,14 @@ public class RegistrationPage {
     CalendarComponent calendarComponent = new CalendarComponent();
     TableResponsive tableResponsive = new TableResponsive();
 
-    @Step("Открываем страницу заполнения формы")
+    @Step("Opening the form filling page")
     public RegistrationPage openPage() {
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
         return this;
     }
 
-    @Step("Закрываем и убираем мешающие элементы со страницы")
+    @Step("Close and remove the interfering elements from the page")
     public RegistrationPage removeBanner() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
@@ -46,92 +46,92 @@ public class RegistrationPage {
 
     }
 
-    @Step("Вводим Имя")
+    @Step("Type first name \"{value}\"")
     public RegistrationPage setFirstName(String value) {
         firstNameInput.setValue(value);
         return this;
     }
 
-    @Step("Вводим Фамилию")
+    @Step("Type last name \"{value}\"")
     public RegistrationPage setLastName(String value) {
         lastNameInput.setValue(value);
         return this;
     }
 
-    @Step("Вводим Эл.Адрес")
+    @Step("Type Email \"{value}\"")
     public RegistrationPage setEmail(String value) {
         userEmailInput.setValue(value);
         return this;
     }
 
-    @Step("Выбираем пол")
+    @Step("Choosing a gender \"{value}\"")
     public RegistrationPage setGender(String value) {
         genderWrapper.$(byText(value)).click();
         return this;
     }
 
-    @Step("Вводим телефон")
+    @Step("Enter the phone number \"{value}\"")
     public RegistrationPage setUserNumber(String value) {
         userNumberInput.setValue(value);
         return this;
     }
 
-    @Step("Вводим полную дату рождения")
+    @Step("Enter the full date of birth \"{day}\" \"{month}\" \"{year}\"")
     public RegistrationPage setDateOfBirth(String day, String month, String year) {
         calendarInput.click();
         calendarComponent.setDate(day, month, year);
         return this;
     }
 
-    @Step("Вводим предмет")
+    @Step("Type the subject \"{value}\"")
     public RegistrationPage setSabjects(String value) {
         sabject.setValue(value).pressEnter();
         return this;
     }
 
-    @Step("Вводим Хобби")
+    @Step("Type the hobby \"{value}\"")
     public RegistrationPage setHobbies(String value) {
         Hobbies.$(byText(value)).click();
         return this;
     }
 
-    @Step("Загружаем картинку")
+    @Step("Upload picture \"{value}\"")
     public RegistrationPage setUploadPicture(String value) {
         uploadPicture.uploadFromClasspath(value);
         return this;
     }
 
-    @Step("Вводим Адрес проживания")
+    @Step("Type current address \"{value}\"")
     public RegistrationPage setCurrentAddress(String value) {
         currentAddress.setValue(value);
         return this;
     }
 
-    @Step("Скролим страницу")
+    @Step("Scroll page")
     public RegistrationPage setScroll() {
         submit.scrollIntoView("{block: 'center'}");
         return this;
     }
 
-    @Step("Выбираем Штат")
+    @Step("Choosing a State \"{value}\"")
     public RegistrationPage setStateDropdown(String value) {
         stateFieldSetValue.setValue(value).pressEnter();
         return this;
     }
 
-    @Step("Выбираем Город")
+    @Step("Choosing a City \"{value}\"")
     public RegistrationPage setCityDropdown(String value) {
         cityFieldSetValue.setValue(value).pressEnter();
         return this;
     }
 
-    @Step("Нажимаем Submit")
+    @Step("Press Submit")
     public RegistrationPage setSubmit() {
         submit.click();
         return this;
     }
 
-    @Step("Проверяем модальное окно на видимость")
+    @Step("Checking the modal window for visibility")
     public RegistrationPage setModalDialog() {
         modalDialog.should(appear);
         return this;
@@ -143,19 +143,19 @@ public class RegistrationPage {
         return this;
     }
 
-    @Step("Проверяем заголовок модального окна")
+    @Step("Checking the title of the modal window")
     public RegistrationPage setModalTitle(String title) {
         modalTitle.shouldHave(text(title));
         return this;
     }
 
-    @Step("Проверяем соответствие столбцов в итоговой таблице")
+    @Step("Check that field \"{key}\" has result \"{value}\" ")
     public RegistrationPage checkResult(String key, String value) {
         tableResponsive.setTable(key, value);
         return this;
     }
 
-    @Step("Закрываем итоговую таблицу")
+    @Step("Closing the final table")
     public RegistrationPage closeModal() {
         closeModal.click();
         return this;
