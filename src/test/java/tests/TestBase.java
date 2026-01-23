@@ -19,10 +19,15 @@ public class TestBase {
     TestData testData = new TestData();
     CalendarComponent calendarComponent = new CalendarComponent();
 
+    //String browser = System.getProperty("browser", "chrome");
+
     @BeforeAll
     static void beforeAll() {
+        String browser = System.getProperty("browser", "chrome");
+
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
+        Configuration.browser = browser;
         Configuration.pageLoadStrategy = "eager";
         //Configuration.holdBrowserOpen = true;
         //Configuration.timeout = 10000; // default 4000
