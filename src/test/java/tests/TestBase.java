@@ -28,6 +28,7 @@ public class TestBase {
         String browser = System.getProperty("browser", "chrome");
         String browserVersion = System.getProperty("browserVersion", "127");
         String baseUrl = System.getProperty("baseUrl");
+        String remoteUrl = System.getProperty("remoteUrl");
         String browserSize = System.getProperty("browserSize", "1920x1080");
 
 
@@ -45,7 +46,8 @@ public class TestBase {
                 "enableVideo", true
         ));
         Configuration.browserCapabilities = capabilities;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = remoteUrl;
+                //"https://user1:1234@selenoid.autotests.cloud/wd/hub";
     }
 
     @BeforeEach
