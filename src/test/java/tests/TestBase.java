@@ -27,9 +27,10 @@ public class TestBase {
     static void beforeAll() {
         String browser = System.getProperty("browser", "chrome");
         String browserVersion = System.getProperty("browserVersion", "127");
+        String baseUrl = System.getProperty("baseUrl");
 
         Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com";
+        Configuration.baseUrl = baseUrl;
         Configuration.browser = browser;
         Configuration.browserVersion = browserVersion;
         Configuration.pageLoadStrategy = "eager";
