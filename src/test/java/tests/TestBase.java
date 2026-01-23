@@ -13,6 +13,8 @@ import pages.components.CalendarComponent;
 
 import java.util.Map;
 
+import static com.codeborne.selenide.Selenide.closeWebDriver;
+
 public class TestBase {
 
     RegistrationPage steps = new RegistrationPage();
@@ -24,10 +26,12 @@ public class TestBase {
     @BeforeAll
     static void beforeAll() {
         String browser = System.getProperty("browser", "chrome");
+        String browserVersion = System.getProperty("browserVersion", "127");
 
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browser = browser;
+        Configuration.browserVersion = browserVersion;
         Configuration.pageLoadStrategy = "eager";
         //Configuration.holdBrowserOpen = true;
         //Configuration.timeout = 10000; // default 4000
@@ -52,6 +56,8 @@ public class TestBase {
         Attach.pageSource();
         Attach.browserConsoleLogs();
         Attach.addVideo();
+
+        closeWebDriver();
 
     }
 }
