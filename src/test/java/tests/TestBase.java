@@ -21,8 +21,6 @@ public class TestBase {
     TestData testData = new TestData();
     CalendarComponent calendarComponent = new CalendarComponent();
 
-    //String browser = System.getProperty("browser", "chrome");
-
     @BeforeAll
     static void beforeAll() {
         String browser = System.getProperty("browser", "chrome");
@@ -30,7 +28,6 @@ public class TestBase {
         String baseUrl = System.getProperty("baseUrl");
         String remoteUrl = System.getProperty("remoteUrl");
         String browserSize = System.getProperty("browserSize", "1920x1080");
-
 
         Configuration.browserSize = browserSize;
         Configuration.baseUrl = baseUrl;
@@ -46,7 +43,7 @@ public class TestBase {
                 "enableVideo", true
         ));
         Configuration.browserCapabilities = capabilities;
-        Configuration.remote = remoteUrl;
+        Configuration.remote =remoteUrl;
                 //"https://user1:1234@selenoid.autotests.cloud/wd/hub";
     }
 
