@@ -20,7 +20,7 @@ public class TestData {
             subjects = faker.options().option("Chemistry", "Computer Science", "English", "Maths", "Physics", "Economics",
                     "Arts", "Social Studies", "History", "Civics", "Hindi", "Biology", "Commerce", "Accounting"),
             hobbies = faker.options().option("Sports", "Reading", "Music"),
-            Picture = faker.options().option("icons_0.png", "icons_1.png"),
+            picture = faker.options().option("icons_0.png", "icons_1.png"),
             currentAddress = faker.address().fullAddress(),
             state = faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
 

@@ -18,7 +18,7 @@ public class RegistrationPage {
             userNumberInput = $("#userNumber"),
             calendarInput = $("#dateOfBirthInput"),
             sabject = $("#subjectsInput"),
-            Hobbies = $("#hobbiesWrapper"),
+            hobbies = $("#hobbiesWrapper"),
             uploadPicture = $("#uploadPicture"),
             currentAddress = $("#currentAddress"),
             stateFieldSetValue = $("#react-select-3-input"),
@@ -91,7 +91,7 @@ public class RegistrationPage {
 
     @Step("Type the hobby \"{value}\"")
     public RegistrationPage setHobbies(String value) {
-        Hobbies.$(byText(value)).click();
+        hobbies.$(byText(value)).click();
         return this;
     }
 
