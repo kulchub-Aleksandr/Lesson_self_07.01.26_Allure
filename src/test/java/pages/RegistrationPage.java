@@ -137,7 +137,7 @@ public class RegistrationPage {
         return this;
     }
 
-    @Step("Проверяем модальное окно на НЕвидимость")
+    @Step("Checking the modal window for invisibility")
     public RegistrationPage getModalDialog() {
         modalDialog.shouldNotBe(visible);
         return this;
